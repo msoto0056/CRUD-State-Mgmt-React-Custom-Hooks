@@ -1,0 +1,33 @@
+{
+  "name": "react-crud-plus-state-management",
+  "version": "1.0.0",
+  "description": "React 16.8+ CRUD using axios & React Query + State Mgmt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msoto0056/CRUD-State-Mgmt-React-Custom-Hooks.git"
+  },
+  "keywords": [
+    "react",
+    "crud",
+    "axios",
+    "query",
+    "state",
+    "management"
+  ],
+  "author": "Miguel Soto Q.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/msoto0056/CRUD-State-Mgmt-React-Custom-Hooks/issues"
+  },
+  "homepage": "https://github.com/msoto0056/CRUD-State-Mgmt-React-Custom-Hooks#readme",
+  "peerDependencies": {
+    "axios": "^0.21.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-query": "^3.21.1"
+  }
+}
