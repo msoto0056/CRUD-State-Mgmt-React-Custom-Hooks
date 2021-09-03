@@ -236,7 +236,7 @@ const peopleReducer = (state, action) => {
     ...
     const {url} = useTaskStore();  // ...url: 'http://localhost:5000/tasks'
     const onSuccess=(data) =>{dispatch({type:actions.FIELDS, fieldName: 'taskCount', payload:data.length})}
-    const {data:tasks, error, isLoading, isError} = useRetrieve("<"tag">",url, onSuccess);
+    const {data:tasks, error, isLoading, isError} = useRetrieve("tasks",url, onSuccess);
 ```
 
 ### useDelete
@@ -280,7 +280,7 @@ const peopleReducer = (state, action) => {
         globalDispatch({type:actions.FIELDS, fieldName: 'notify', payload: {message:'Deleted Successfully',isOpen:true, type:'error'}});
         dispatch({type:actions.SET_COUNT, payload:-1});
     }
-    const {isLoading:loading, remove} = useDelete("people",url,onSuccessDel)
+    const {isLoading:loading, remove} = useDelete("tasks",url,onSuccessDel)
     Return(
     ...
     <button onClick={()=>remove(person.id)}>Delete</button>
