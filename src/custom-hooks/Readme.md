@@ -1,9 +1,12 @@
 # react-crud-plus-state-management
 
 #### React 16.8+ CRUD using axios & React Query + State Mgmt
-* All you need is one line of code for each CRUD Operation and the package will use the magic provided by React Query to perform each HTTP operation using axios. React Query was created by Tanner Linsley. axios is heavily inspired by the $http service provided in Angular. Ultimately axios is an effort to provide a standalone $http-like service for use outside of Angular.*
 
-## Getting Started 
+- All you need is one line of code for each CRUD Operation and the package will use the magic provided by React Query to perform each HTTP operation using axios. React Query was created by Tanner Linsley. axios is heavily inspired by the $http service provided in Angular. Ultimately axios is an effort to provide a standalone $http-like service for use outside of Angular.\*
+
+- The State Management component provides an store using a similar concept provided by Redux but using React v16.8 + Hooks.\*
+
+## Getting Started
 
 ** Follow the create-react-app instructions to get started and then**
 
@@ -16,6 +19,7 @@
     #### npm install react-crud-plus-state-management
 
 #### Dependencies
+
 ##### Required Peer Dependencies
 
 These libraries are not bundled with this package and required at runtime:
@@ -25,12 +29,13 @@ These libraries are not bundled with this package and required at runtime:
     axios
     react-query
 
-## State Management 
+## State Management
 
-### Usage:
+### Usage
 
-#### description 
-* The State Managment Hooks provide a Redux like Store using React Hooks available since v16.8. There are 2 versions MakeStore and MakeStore2. both of them return an Store provider, an Store and a Dispatch function. The difference is that MakeStore2 returns a tuple [Store,Dispatch] to follow regular useReducer format and the MakeStore returns separete Store and Dispatch components to facilitate its usage in the useEffect dependency array and reduce the # of renderings.*
+#### description
+
+- The State Management Hooks provide a Redux like Store using React Hooks available since v16.8. There are 2 versions available in this package: MakeStore and MakeStore2. both of them return an Store provider, an Store and a Dispatch function. The difference is that MakeStore2 returns a tuple [Store,Dispatch] to follow regular useReducer format and the MakeStore returns Store and Dispatch separate components to facilitate its usage in the useEffect dependency array and reduce the # of renderings.\*
 
 ### MakeStore2
 
@@ -42,12 +47,11 @@ These libraries are not bundled with this package and required at runtime:
 
 ##### Finally create a new store with the name that you want
 
-* sample 
-
+- sample
 
 ```javascript
 ...
-import 
+import
 const initialState = {
 count:0,
 url: 'http://localhost:5000/People'
@@ -92,14 +96,12 @@ const peopleReducer = (state, action) => {
 #### In the component that you want to use the Store, import the store from the location where you create it and use it as a hook
 
 ...
-    import { usePeopleState} from './PeopleStore';
+import { usePeopleState} from './PeopleStore';
 ...
 
     const [{url},dispatch] = usePeopleState();
 
-
 #### Now you can use the Const(s) and the dispatch function as expected
-
 
 ### MakeStore
 
@@ -111,10 +113,10 @@ const peopleReducer = (state, action) => {
 
 ##### Finally create a new store with the name that you want
 
-* sample
+- sample
 
-``` javascript
-    import 
+```javascript
+    import
 
     const initialState = {
         count:0,
@@ -160,8 +162,9 @@ const peopleReducer = (state, action) => {
     );
 
 #### In the component that you want to use the Store, import the store and the dispatch from the locations where you create them and use it as a hook
+
 ...
-    import { usePeopleStore, usePeopleDispatch} from './PeopleStore';
+import { usePeopleStore, usePeopleDispatch} from './PeopleStore';
 ...
 
     const {url} = usePeopleStore();
@@ -171,9 +174,9 @@ const peopleReducer = (state, action) => {
 
 ## Using the CRUD
 
-##### As indicated in react query documentation 
+##### As indicated in react query documentation
 
-* In main app 
+- In main app
 
 #### _import { QueryClientProvider, QueryClient } from "react-query";_
 
@@ -183,9 +186,9 @@ const peopleReducer = (state, action) => {
 
 ##### then; Wrap elements that need the server state
 
-    * <QueryClientProvider client={queryClient}> 
+    * <QueryClientProvider client={queryClient}>
 
-* sample
+- sample
 
 ```javascript
     ...
@@ -200,7 +203,8 @@ const peopleReducer = (state, action) => {
 ```
 
 ### useRetrieve
-##### For retrieving data <<=>> axios.get 
+
+##### For retrieving data <<=>> axios.get
 
 #### Usage:
 
@@ -208,7 +212,7 @@ const peopleReducer = (state, action) => {
 
 ###### Then inside a React functional Component - since it's a hook, it must follow hook rules
 
-###### Define the following destructure const to be used. 
+###### Define the following destructure const to be used.
 
 #### const {data, error, isLoading, isError} = useRetrieve("tag",url,onSuccess(optional))
 
@@ -219,14 +223,14 @@ const peopleReducer = (state, action) => {
     * isLoading: boolean flag indicting if true that data is been fetch from the server.
     * isError: that is a boolean flag that if it's return as true an error occurred *
 
-###### Props  
+###### Props
 
     * "<tag>" unique tag that you want to use for the collection of a given data set. This is the react query Key.**
     * url is the API end point.
     * you can use the state management to hold this data *
     * onSuccess is a function that you can pass as a parameter that will be executed if the fetch was successful, like loading a counter, or sending a message, etc.**
 
-* sample
+- sample
 
 ```javascript
     import
@@ -240,17 +244,18 @@ const peopleReducer = (state, action) => {
 ```
 
 ### useDelete
-##### For deleting data <<=>> axios.delete 
 
-#### Usage: 
+##### For deleting data <<=>> axios.delete
+
+#### Usage:
 
 #### _import {useDelete} from "react-crud-plus-state-management"_
 
 ###### Then inside a React functional Component - since it's a hook, it must follow hook rules.
 
-###### Define the following destructure const to be used. 
+###### Define the following destructure const to be used.
 
-#### const {isLoading:loadingDel, remove, error:errorDel,  isError:isErrorDel} = useDelete("tag",url,onSuccess(optional)) 
+#### const {isLoading:loadingDel, remove, error:errorDel, isError:isErrorDel} = useDelete("tag",url,onSuccess(optional))
 
 ###### destructure const
 
@@ -266,8 +271,8 @@ const peopleReducer = (state, action) => {
     * url is the API end point. * you can use the state management to hold this data. The function  will build the uri using the id that the function receives in the onClick event to trigger the deletion*
     * onSuccess => Optional if we want to do any actions after the deletion. i.e nofify successful deletion
 
+- sample
 
-* sample  
 ```javascript
     ...
     import {useDelete} from '../../customHooks/reactQuery/useDelete';
@@ -290,22 +295,23 @@ const peopleReducer = (state, action) => {
 ```
 
 ### useUpdate
-##### For updating data <<=>> axios.put 
 
-#### Usage: 
+##### For updating data <<=>> axios.put
+
+#### Usage:
 
 #### _import {useUpdate} from "react-crud-plus-state-management"_
 
 ###### Then inside a React functional Component - since it's a hook, it must follow hook rules.
 
-###### Define the following destructure const to be used. 
+###### Define the following destructure const to be used.
 
-#### const {isLoading:loadingUpd, update, error:errorUpd,  isError:isErrorUpd} = useUpdate("tag",url, onSuccess(optional))
+#### const {isLoading:loadingUpd, update, error:errorUpd, isError:isErrorUpd} = useUpdate("tag",url, onSuccess(optional))
 
 ###### destructure const
 
     * isLoading renamed as loadingUpd in this case,since isLoading probably will be used with the {useRetrieve} in the same component, if not disregard: boolean indicating if true that the http operation is happening on the server
-    * update: the update function that is inside the useUpdate hook, it expects expects the <data with id> that most be passed on the onFormSubmit event. 
+    * update: the update function that is inside the useUpdate hook, it expects expects the <data with id> that most be passed on the onFormSubmit event.
     * error for receiving errors if those happen.
     * isLoading boolean flag indicting if true that data is been fetch from the server.
     * isError renamed as isErrorUpd that is a boolean flag that if it's return as true an error occurred *
@@ -324,7 +330,9 @@ const peopleReducer = (state, action) => {
         ...
     }
 ```
-* sample  
+
+- sample
+
 ```javascript
     ...
     import {useUpdate} from '../../customHooks/reactQuery/useUpdate';
@@ -334,7 +342,7 @@ const peopleReducer = (state, action) => {
     export default function UpdateTask = () => {
     const {task,url} = useTaskStore();
     const globalDispatch=useGlobalDispatch();
-    
+
     const onSuccessUpd = ()=>{
         globalDispatch({type:actions.FIELDS, fieldName: 'notify', payload:  {message:'Updated Successfully',isOpen:true, type:'success'}});
     }
@@ -354,22 +362,23 @@ const peopleReducer = (state, action) => {
 ```
 
 ### useCreate
-##### For creating data <<=>> axios.post 
 
-#### Usage: 
+##### For creating data <<=>> axios.post
+
+#### Usage:
 
 #### _import {useCreate} from "react-crud-plus-state-management"_
 
 ###### Then inside a React functional Component - since it's a hook, it must follow hook rules.
 
-###### Define the following destructure const to be used. 
+###### Define the following destructure const to be used.
 
-###### const {isLoading:loadingAdd, create, error, isError}  = useCreate("tag",url,onSuccess(optional))
+###### const {isLoading:loadingAdd, create, error, isError} = useCreate("tag",url,onSuccess(optional))
 
 ###### destructure const
 
     * isLoading renamed as loadingAdd in this case,since isLoading probably will be used with the {useRetrieve} in the same component, if not disregard: boolean indicating if true that the http operation is happening on the server
-    * create: the create function that is inside the useCreate hook, it expects expects the <data> that most be passed on the onFormSubmit event. 
+    * create: the create function that is inside the useCreate hook, it expects expects the <data> that most be passed on the onFormSubmit event.
     * error for receiving errors if those happen.
     * isLoading boolean flag indicting if true that data is been fetch from the server.
     * isError renamed as isErrorAdd that is a boolean flag that if it's return as true an error occurred *
@@ -377,7 +386,7 @@ const peopleReducer = (state, action) => {
 ###### props:
 
     * "<tag>" the given tag use in the react query ...most match the one used in the useRetrieve.
-    * url is the API end point.  you can use the state management to hold this data. 
+    * url is the API end point.  you can use the state management to hold this data.
     * onSuccess => Optional if we want to do any actions after the updating  i.e nofify successful created
 
 ###### Then define a onFormSubmit function to handle the updated(data) coming from a Form. This could be a react-hook-form too.
@@ -387,7 +396,8 @@ const peopleReducer = (state, action) => {
         ...
     }
 
-* sample:
+- sample:
+
 ```javascript
 ...
     import {useCreate} from '../../customHooks/reactQuery/useCreate';
@@ -397,7 +407,7 @@ const peopleReducer = (state, action) => {
     export default function AddTask = () => {
     const {url} = useTaskStore();
     const globalDispatch=useGlobalDispatch();
-    
+
     const onSuccessAdd = ()=>{
         globalDispatch({type:actions.FIELDS, fieldName: 'notify', payload:  {message:'Added Successfully',isOpen:true, type:'success'}});
         dispatch({type:actions.SET_COUNT, payload:1});
